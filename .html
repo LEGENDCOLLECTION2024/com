@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-image: url('image\ \(58\).png');
+      background-size: cover;
+      background-position: center;
+      height: 150vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      height: 40px;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: space-between;
+      align-items: center;
+      padding: 35px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 150px;
+      margin-right: 10px;
+    }
+
+    nav a {
+      font-weight: 600;
+      padding-right: 10px;
+    }
+
+    nav a:hover {
+      color: rgb(255, 255, 1);
+    }
+
+    @media (max-width: 700px) {
+      header {
+          flex-direction: column;
+      }
+      nav {
+          padding: 5px 0px;
+      }
+    }
+
+    /* Estilos para el carrusel */
+    .carrusel-container {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .carrusel {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carrusel img {
+      width: 100%;
+      height: auto;
+    }
+
+    .carrusel-indicadores {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .carrusel-indicador {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .carrusel-indicador.activo {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    /* Estilos para el pie de página animado */
+    #footer-padre {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px;
+      animation: animateFooter 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes animateFooter {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">
+      <img src="descarga.png" alt="logo de la compañia">
+      <h2 class="nombre-empresa">Legend Collection</h2>
+    </a>
+    <nav>
+      <a href="file:///C:/Users/High%20school%2024/Downloads/paco/mata%20furros/mt.html" class="nav-link">Our Collection</a>
+      <a href="file:///C:/Users/High%20school%2024/Downloads/paco/About.us/.html" class="nav-link">About us</a>
+      <a href="file:///C:/Users/High%20school%2024/Downloads/paco/Log%20in/login.html#" class="nav-link">Log in</a>
+    </nav>
+  </header>
+
+  <!-- Carrusel de imágenes -->
+  <div class="carrusel-container">
+    <div class="carrusel">
+      <img src="Captura de pantalla 2024-03-19 095450.png" alt="Imagen 1">
+      <img src="mm.png" alt="Imagen 2">
+      <img src="marijane.png" alt="Imagen 3">
+      <img src="ml.png" alt="Imagen 4">
+      <img src="payo.png" alt="Imagen 5">
+    </div>
+  </div>
+
+  <!-- Indicadores del carrusel -->
+  <div class="carrusel-indicadores">
+    <div class="carrusel-indicador activo"></div>
+    <div class="carrusel-indicador"></div>
+    <div class="carrusel-indicador"></div>
+    <div class="carrusel-indicador"></div>
+    <div class="carrusel-indicador"></div>
+  </div>
+
+  <!-- JavaScript para el carrusel -->
+  <script>
+    const carrusel = document.querySelector('.carrusel');
+    const indicadores = document.querySelectorAll('.carrusel-indicador');
+    let indiceActivo = 0;
+
+    function mostrarImagen(indice) {
+      const desplazamiento = -100 * indice;
+      carrusel.style.transform = `translateX(${desplazamiento}%)`;
+
+      indicadores[indiceActivo].classList.remove('activo');
+      indicadores[indice].classList.add('activo');
+
+      indiceActivo = indice;
+    }
+
+    function avanzarImagen() {
+      const siguienteIndice = (indiceActivo + 1) % carrusel.children.length;
+      mostrarImagen(siguienteIndice);
+    }
+
+    function retrocederImagen() {
+      const indiceAnterior = (indiceActivo - 1 + carrusel.children.length) % carrusel.children.length;
+      mostrarImagen(indiceAnterior);
+    }
+
+    function iniciarCarrusel() {
+      setInterval(avanzarImagen, 5000);
+    }
+
+    indicadores.forEach((indicador, indice) => {
+      indicador.addEventListener('click', () => mostrarImagen(indice));
+    });
+
+    iniciarCarrusel();
+  </script>
+
+ 
+
+  <!-- Pie de página animado -->
+  <footer id="footer-padre">
+    © 2024 Legend Collection. All rights reserved.
+  </footer>
+</body>
+</html>

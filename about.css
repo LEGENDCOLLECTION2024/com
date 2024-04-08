@@ -1,0 +1,15 @@
+#aboutUsContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  #aboutUsImage {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  #aboutUsText {
+    flex: 1;
+  }
